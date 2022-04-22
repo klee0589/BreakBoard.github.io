@@ -1,14 +1,16 @@
 // import React, { useState } from "react";
 // import { useSelector, useDispatch } from "react-redux";
 // import {
-  // decrement,
-  // increment,
-  // incrementByAmount,
-  // incrementAsync,
-  // incrementIfOdd,
-  // selectCount,
+// decrement,
+// increment,
+// incrementByAmount,
+// incrementAsync,
+// incrementIfOdd,
+// selectCount,
 // } from "./counterSlice";
 import styles from "./Counter.module.css";
+import Form from "react-bootstrap/Form";
+// import Button from 'react-bootstrap/Button';
 
 const f1_teams = [
   {
@@ -87,11 +89,18 @@ export function TeamBoard() {
   // const incrementValue = Number(incrementAmount) || 0;
 
   return (
-    <ul>
+    <ul className="mb-6">
       {f1_teams.map((team) => (
         <li key={team.id}>
-          <img className={styles.logo} src={team.logo} alt="logo" />
-          {team.name}
+          <div className={styles.teamContainer}>
+            <img className={styles.logo} src={team.logo} alt="logo" />
+            <div>{team.name}</div>
+            <Form>
+              <Form.Group className="mb-6" controlId="formBasicEmail">
+                <Form.Control type="email" placeholder="OWNER" />
+              </Form.Group>
+            </Form>
+          </div>
         </li>
       ))}
     </ul>
