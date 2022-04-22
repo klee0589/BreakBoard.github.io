@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/BreakBoard/static/css/main.c01ea265.css",
+    "main.js": "/BreakBoard/static/js/main.d8172516.js",
+    "index.html": "/BreakBoard/index.html",
+    "main.c01ea265.css.map": "/BreakBoard/static/css/main.c01ea265.css.map",
+    "main.d8172516.js.map": "/BreakBoard/static/js/main.d8172516.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c01ea265.css",
+    "static/js/main.d8172516.js"
+  ]
+}
