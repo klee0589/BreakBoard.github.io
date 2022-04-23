@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/BreakBoard/static/css/main.4d6b427c.css",
-    "main.js": "/BreakBoard/static/js/main.5d18f84c.js",
+    "main.js": "/BreakBoard/static/js/main.46056645.js",
     "index.html": "/BreakBoard/index.html",
     "main.4d6b427c.css.map": "/BreakBoard/static/css/main.4d6b427c.css.map",
-    "main.5d18f84c.js.map": "/BreakBoard/static/js/main.5d18f84c.js.map"
+    "main.46056645.js.map": "/BreakBoard/static/js/main.46056645.js.map"
   },
   "entrypoints": [
     "static/css/main.4d6b427c.css",
-    "static/js/main.5d18f84c.js"
+    "static/js/main.46056645.js"
   ]
 }
