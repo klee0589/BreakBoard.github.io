@@ -5,6 +5,10 @@ import App from './App';
 import { store } from './app/store';
 import { Provider } from 'react-redux';
 import * as serviceWorker from './serviceWorker';
+import { teamsLoaded } from './features/teamBoard/counterSlice'
+import { f1_teams } from "./features/teamBoard/data";
+
+store.dispatch(teamsLoaded(f1_teams))
 
 ReactDOM.render(
   <React.StrictMode>
