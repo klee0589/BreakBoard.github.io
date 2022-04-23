@@ -2,10 +2,12 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   addOwner,
-  activeTeams
+  activeTeams,
+  shuffle
 } from "./counterSlice";
 import styles from "./Counter.module.css";
 import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
 
 export function TeamBoard() {
   const teams = useSelector(activeTeams);
@@ -26,13 +28,14 @@ export function TeamBoard() {
                 <Form.Control
                   type="text"
                   placeholder={team.owner}
-                  onChange={(e) => dispatch(addOwner(teams, e.target.value))}
+                  onChange={(e) => dispatch(addOwner({ id: team.id, owner: e.target.value }))}
                 />
               </Form.Group>
             </Form>
           </div>
         </li>
       ))}
+      <Button onClick={() => dispatch(shuffle())}>SHUFFLE!!!</Button>
     </ul>
   );
 
