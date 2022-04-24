@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { f1_teams } from "./data";
 
 const initialState = {
-  f1_teams
+  f1_teams,
 };
 
 export const teamBoard = createSlice({
@@ -16,28 +16,27 @@ export const teamBoard = createSlice({
       team.owner = newOwner;
     },
     shuffle: (state) => {
-      const { f1_teams } = state
-      let currentIndex = f1_teams.length,  randomIndex;
+      const { f1_teams } = state;
+      let currentIndex = f1_teams.length,
+        randomIndex;
 
       // While there remain elements to shuffle.
       while (currentIndex !== 0) {
-    
         // Pick a remaining element.
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex--;
-    
+
         // And swap it with the current element.
         [f1_teams[currentIndex], f1_teams[randomIndex]] = [
-          f1_teams[randomIndex], f1_teams[currentIndex]];
+          f1_teams[randomIndex],
+          f1_teams[currentIndex],
+        ];
       }
     }
-  }
+  },
 });
 
-export const {
-  addOwner,
-  shuffle
-} = teamBoard.actions;
+export const { addOwner, shuffle } = teamBoard.actions;
 
 export const activeTeams = (state) => state.teams.f1_teams;
 
