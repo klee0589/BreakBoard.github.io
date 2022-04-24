@@ -1,7 +1,11 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addOwner, activeTeams, shuffle } from "./counterSlice";
-import styles from "./Counter.module.css";
+import {
+  addOwner,
+  activeTeams,
+  shuffle
+} from "./teamBoardSlice";
+import styles from "./TeamBoard.module.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import ListGroup from "react-bootstrap/ListGroup";
