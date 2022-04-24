@@ -17,7 +17,20 @@ export const teamBoard = createSlice({
       team.owner = newOwner;
     },
     shuffle: (state) => {
-      
+      const { f1_teams } = state
+      let currentIndex = f1_teams.length,  randomIndex;
+
+      // While there remain elements to shuffle.
+      while (currentIndex != 0) {
+    
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+    
+        // And swap it with the current element.
+        [f1_teams[currentIndex], f1_teams[randomIndex]] = [
+          f1_teams[randomIndex], f1_teams[currentIndex]];
+      }
     },
     teamsLoaded(state, action) {
       const newEntities = {};
