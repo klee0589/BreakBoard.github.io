@@ -21,7 +21,7 @@ export const teamBoard = createSlice({
       let currentIndex = f1_teams.length,  randomIndex;
 
       // While there remain elements to shuffle.
-      while (currentIndex != 0) {
+      while (currentIndex !== 0) {
     
         // Pick a remaining element.
         randomIndex = Math.floor(Math.random() * currentIndex);
