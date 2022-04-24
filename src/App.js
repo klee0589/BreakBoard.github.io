@@ -21,9 +21,6 @@ function App() {
           <Col>
             <TeamBoard />
           </Col>
-          <Col>
-            <Dice onRoll={(value) => console.log(value)} rollingTime={250} size={200} />
-          </Col>
         </Row>
       </Container>
     </div>
