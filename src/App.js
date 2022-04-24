@@ -1,19 +1,28 @@
-import React from "react";
+// import React from "react";
 // import logo from './logo.svg';
 import { TeamBoard } from "./features/teamBoard/TeamBoard";
 import "./App.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Navbar from "react-bootstrap/Navbar";
+import Dice from "react-dice-roll";
 
 function App() {
   return (
     <div className="App">
+      <Navbar bg="light" expand="lg" className={'navbar'}>
+        <Container>
+          <Navbar.Brand href="#home">Breaker Board 5000</Navbar.Brand>
+        </Container>
+      </Navbar>
       <Container>
-        <Row className="justify-content-md-center">
-          {/* <img src={logo} className="App-logo" alt="logo" /> */}
+        <Row>
           <Col>
             <TeamBoard />
+          </Col>
+          <Col>
+            <Dice onRoll={(value) => console.log(value)} rollingTime={250} size={200} />
           </Col>
         </Row>
       </Container>

@@ -1,108 +1,41 @@
-// import React, { useState } from "react";
-// import { useSelector, useDispatch } from "react-redux";
-// import {
-// decrement,
-// increment,
-// incrementByAmount,
-// incrementAsync,
-// incrementIfOdd,
-// selectCount,
-// } from "./counterSlice";
-import styles from "./Counter.module.css";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  addOwner,
+  activeTeams,
+  shuffle
+} from "./teamBoardSlice";
+import styles from "./TeamBoard.module.css";
 import Form from "react-bootstrap/Form";
-// import Button from 'react-bootstrap/Button';
-
-const f1_teams = [
-  {
-    id: "f1_ferrari",
-    name: "Ferrari",
-    isSelected: false,
-    logo: "https://www.formula1.com/content/dam/fom-website/teams/2022/ferrari-logo.png.transform/2col/image.png",
-  },
-  {
-    id: "f1_mercedes",
-    name: "Mercedes",
-    isSelected: false,
-    logo: "https://www.formula1.com/content/dam/fom-website/teams/2022/mercedes-logo.png.transform/2col/image.png",
-  },
-  {
-    id: "f1_red_bull_racing",
-    name: "Red Bull Racing",
-    isSelected: false,
-    logo: "https://www.formula1.com/content/dam/fom-website/teams/2022/red-bull-racing-logo.png.transform/2col/image.png",
-  },
-  {
-    id: "f1_mcclaren",
-    name: "McClaren",
-    isSelected: false,
-    logo: "https://www.formula1.com/content/dam/fom-website/teams/2022/mclaren-logo.png.transform/2col/image.png",
-  },
-  {
-    id: "f1_alpine",
-    name: "Alpine",
-    isSelected: false,
-    logo: "https://www.formula1.com/content/dam/fom-website/teams/2022/alpine-logo.png.transform/2col/image.png",
-  },
-  {
-    id: "f1_alfa_romeo",
-    name: "Alfa Romeo",
-    isSelected: false,
-    logo: "https://www.formula1.com/content/dam/fom-website/teams/2022/alfa-romeo-logo.png.transform/2col/image.png",
-  },
-  {
-    id: "f1_haas",
-    name: "Haas F1 Team",
-    isSelected: false,
-    logo: "https://www.formula1.com/content/dam/fom-website/teams/2022/haas-f1-team-logo.png.transform/2col/image.png",
-  },
-  {
-    id: "f1_alphatauri",
-    name: "AlphaTauri",
-    isSelected: false,
-    logo: "https://www.formula1.com/content/dam/fom-website/teams/2022/alphatauri-logo.png.transform/2col/image.png",
-  },
-  {
-    id: "f1_williams",
-    name: "Williams",
-    isSelected: false,
-    logo: "https://www.formula1.com/content/dam/fom-website/teams/2022/williams-logo.png.transform/2col/image.png",
-  },
-  {
-    id: "f1_aston_martin",
-    name: "Aston Martin",
-    isSelected: false,
-    logo: "https://www.formula1.com/content/dam/fom-website/teams/2022/aston-martin-logo.png.transform/2col/image.png",
-  },
-  {
-    id: "f1_f2",
-    name: "F2",
-    isSelected: false,
-    logo: "https://upload.wikimedia.org/wikipedia/en/thumb/1/1f/Formula_2_logo.svg/440px-Formula_2_logo.svg.png",
-  },
-];
+import Button from "react-bootstrap/Button";
 
 export function TeamBoard() {
-  // const count = useSelector(selectCount);
-  // const dispatch = useDispatch();
+  const teams = useSelector(activeTeams);
+  const dispatch = useDispatch();
   // const [incrementAmount, setIncrementAmount] = useState("2");
 
   // const incrementValue = Number(incrementAmount) || 0;
 
   return (
     <ul className="mb-6">
-      {f1_teams.map((team) => (
+      {teams.map((team) => (
         <li key={team.id}>
           <div className={styles.teamContainer}>
             <img className={styles.logo} src={team.logo} alt="logo" />
             <div>{team.name}</div>
             <Form>
               <Form.Group className="mb-6" controlId="formBasicEmail">
-                <Form.Control type="email" placeholder="OWNER" />
+                <Form.Control
+                  type="text"
+                  placeholder={team.owner}
+                  onChange={(e) => dispatch(addOwner({ id: team.id, owner: e.target.value }))}
+                />
               </Form.Group>
             </Form>
           </div>
         </li>
       ))}
+      <Button onClick={() => dispatch(shuffle())}>SHUFFLE!!!</Button>
     </ul>
   );
 
@@ -120,7 +53,7 @@ export function TeamBoard() {
   //       <button
   //         className={styles.button}
   //         aria-label="Increment value"
-  //         onClick={() => dispatch(increment())}
+  //         onClick={() => dispatch(addOwner())}
   //       >
   //         +
   //       </button>
