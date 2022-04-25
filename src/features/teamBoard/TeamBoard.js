@@ -1,89 +1,84 @@
-import React from "react";
+import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  addOwner,
-  activeTeams,
-  shuffle
-} from "./teamBoardSlice";
+import { addOwner, activeTeams, shuffle } from "./teamBoardSlice";
 import styles from "./TeamBoard.module.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import ListGroup from "react-bootstrap/ListGroup";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import { f1_teams } from "./data";
+import Dice from "react-dice-roll";
 
 export function TeamBoard() {
   const teams = useSelector(activeTeams);
   const dispatch = useDispatch();
-  // const [incrementAmount, setIncrementAmount] = useState("2");
 
-  // const incrementValue = Number(incrementAmount) || 0;
+  const [count, setCount] = useState(0);
 
   return (
-    <ul className="mb-6">
-      {teams.map((team) => (
-        <li key={team.id}>
-          <div className={styles.teamContainer}>
-            <img className={styles.logo} src={team.logo} alt="logo" />
-            <div>{team.name}</div>
-            <Form>
-              <Form.Group className="mb-6" controlId="formBasicEmail">
-                <Form.Control
-                  type="text"
-                  placeholder={team.owner}
-                  onChange={(e) => dispatch(addOwner({ id: team.id, owner: e.target.value }))}
-                />
-              </Form.Group>
-            </Form>
-          </div>
-        </li>
-      ))}
-      <Button onClick={() => dispatch(shuffle())}>SHUFFLE!!!</Button>
-    </ul>
+    <Container>
+      <Row>
+        <Col xs={3}>
+          <ListGroup variant="flush">
+            {f1_teams.map((team) => (
+              <ListGroup.Item key={team.id}>
+                <div className={styles.teamContainer}>
+                  <img className={styles.logo} src={team.logo} alt="logo" />
+                  <div>{team.name}</div>
+                </div>
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        </Col>
+        <Col xs={3}>
+          <ListGroup variant="flush">
+            {teams.map((team, index) => (
+              <ListGroup.Item key={team.id}>
+                <div className={styles.teamContainer}>
+                  <Form>
+                    {}
+                    <Form.Group className="mb-6" controlId="formBasicEmail">
+                      <Form.Control
+                        type="text"
+                        placeholder={team.owner ? team.owner : index}
+                        onChange={(e) =>
+                          dispatch(
+                            addOwner({ id: team.id, owner: e.target.value })
+                          )
+                        }
+                      />
+                    </Form.Group>
+                  </Form>
+                </div>
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
+        </Col>
+        <Col xs={2}>
+          <Button
+            size="lg"
+            onClick={() => {
+              dispatch(shuffle());
+              setCount(count + 1);
+            }}
+          >
+            {count > 0 ? `Randomized ${count}X` : "Randomize"}
+          </Button>
+        </Col>
+        <Col xs={4}>
+          <Row>
+            <Col>
+              <Dice
+                onRoll={(value) => console.log(value)}
+                rollingTime={250}
+                size={150}
+              />
+            </Col>
+          </Row>
+        </Col>
+      </Row>
+    </Container>
   );
-
-  // return (
-  //   <div>
-  //     <div className={styles.row}>
-  //       <button
-  //         className={styles.button}
-  //         aria-label="Decrement value"
-  //         onClick={() => dispatch(decrement())}
-  //       >
-  //         -
-  //       </button>
-  //       <span className={styles.value}>{count}</span>
-  //       <button
-  //         className={styles.button}
-  //         aria-label="Increment value"
-  //         onClick={() => dispatch(addOwner())}
-  //       >
-  //         +
-  //       </button>
-  //     </div>
-  //     <div className={styles.row}>
-  //       <input
-  //         className={styles.textbox}
-  //         aria-label="Set increment amount"
-  //         value={incrementAmount}
-  //         onChange={(e) => setIncrementAmount(e.target.value)}
-  //       />
-  //       <button
-  //         className={styles.button}
-  //         onClick={() => dispatch(incrementByAmount(incrementValue))}
-  //       >
-  //         Add Amount
-  //       </button>
-  //       <button
-  //         className={styles.asyncButton}
-  //         onClick={() => dispatch(incrementAsync(incrementValue))}
-  //       >
-  //         Add Async
-  //       </button>
-  //       <button
-  //         className={styles.button}
-  //         onClick={() => dispatch(incrementIfOdd(incrementValue))}
-  //       >
-  //         Add If Odd
-  //       </button>
-  //     </div>
-  //   </div>
-  // );
 }
