@@ -11,7 +11,7 @@ function App() {
     <div className="App">
       <Navbar variant="dark" expand="lg" className={"navbar"}>
         <Container>
-          <Navbar.Brand>Breaker Board 5000</Navbar.Brand>
+          <Navbar.Brand>BreakerBoard 5000</Navbar.Brand>
         </Container>
       </Navbar>
       <Container>
