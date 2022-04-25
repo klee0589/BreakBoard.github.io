@@ -2,6 +2,7 @@
   "name": "break-board",
   "version": "0.1.0",
   "private": true,
+  "homepage": "http://www.breakerboard5000.com/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.1",
     "@testing-library/jest-dom": "^4.2.4",
@@ -15,7 +16,6 @@
     "react-redux": "^7.2.8",
     "react-scripts": "^5.0.1"
   },
-  "homepage": "https://klee0589.github.io/BreakBoard/",
   "scripts": {
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
