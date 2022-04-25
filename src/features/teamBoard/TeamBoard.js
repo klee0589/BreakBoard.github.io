@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {
-  addOwner,
-  activeTeams,
-  shuffle
-} from "./teamBoardSlice";
+import { addOwner, activeTeams, shuffle } from "./teamBoardSlice";
 import styles from "./TeamBoard.module.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -25,35 +21,40 @@ export function TeamBoard() {
     <Container>
       <Row>
         <Col xs={3}>
-          {f1_teams.map((team) => (
-            <ListGroup.Item key={team.id}>
-              <div className={styles.teamContainer}>
-                <img className={styles.logo} src={team.logo} alt="logo" />
-                <div>{team.name}</div>
-              </div>
-            </ListGroup.Item>
-          ))}
+          <ListGroup variant="flush">
+            {f1_teams.map((team) => (
+              <ListGroup.Item key={team.id}>
+                <div className={styles.teamContainer}>
+                  <img className={styles.logo} src={team.logo} alt="logo" />
+                  <div>{team.name}</div>
+                </div>
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
         </Col>
         <Col xs={3}>
-          {teams.map((team) => (
-            <ListGroup.Item key={team.id}>
-              <div className={styles.teamContainer}>
-                <Form>
-                  <Form.Group className="mb-6" controlId="formBasicEmail">
-                    <Form.Control
-                      type="text"
-                      placeholder={team.owner}
-                      onChange={(e) =>
-                        dispatch(
-                          addOwner({ id: team.id, owner: e.target.value })
-                        )
-                      }
-                    />
-                  </Form.Group>
-                </Form>
-              </div>
-            </ListGroup.Item>
-          ))}
+          <ListGroup variant="flush">
+            {teams.map((team, index) => (
+              <ListGroup.Item key={team.id}>
+                <div className={styles.teamContainer}>
+                  <Form>
+                    {}
+                    <Form.Group className="mb-6" controlId="formBasicEmail">
+                      <Form.Control
+                        type="text"
+                        placeholder={team.owner ? team.owner : index}
+                        onChange={(e) =>
+                          dispatch(
+                            addOwner({ id: team.id, owner: e.target.value })
+                          )
+                        }
+                      />
+                    </Form.Group>
+                  </Form>
+                </div>
+              </ListGroup.Item>
+            ))}
+          </ListGroup>
         </Col>
         <Col xs={2}>
           <Button
@@ -63,7 +64,7 @@ export function TeamBoard() {
               setCount(count + 1);
             }}
           >
-            {count > 0 ? `Schuffled ${count} times` : "Schuffle!!!"}
+            {count > 0 ? `Randomized ${count}X` : "Randomize"}
           </Button>
         </Col>
         <Col xs={4}>
