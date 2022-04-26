@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addOwner, activeTeams, shuffle } from "./teamBoardSlice";
+import {
+  activeF1Teams,
+  activeNflTeams,
+  shuffle,
+  shuffleNfl,
+} from "./teamBoardSlice";
 import styles from "./TeamBoard.module.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -13,26 +18,28 @@ import { f1_teams, nfl_teams } from "./data";
 import Dice from "react-dice-roll";
 
 export function TeamBoard() {
-  const teams = useSelector(activeTeams);
+  const sports = [
+    { name: "F1", value: "f1", isActive: false },
+    { name: "NFL", value: "nfl", isActive: false },
+  ];
+
+  const f1TeamsSelector = useSelector(activeF1Teams);
+  const nflTeamsSelector = useSelector(activeNflTeams);
   const dispatch = useDispatch();
 
   const [count, setCount] = useState(0);
+  const [sport, setSport] = useState("f1");
 
-  // const [activeSports, setSport] = useState('f1');
+  const activeSportTeam = sport === "f1" ? f1_teams : nfl_teams;
 
-  // const sports = [
-  //   { name: "F1", value: "f1", isActive: true },
-  //   { name: "NFL", value: "nfl", isActive: false },
-  //   { name: "SOCCER", value: "soc", isActive: false },
-  // ];
+  const activeSport = sport === "f1" ? f1TeamsSelector : nflTeamsSelector;
 
   return (
     <Container>
       <Row>
         <Col xs={3}>
           <ListGroup variant="flush">
-            
-            {f1_teams.map((team) => (
+            {activeSportTeam.map((team) => (
               <ListGroup.Item key={team.id}>
                 <div className={styles.teamContainer}>
                   <img className={styles.logo} src={team.logo} alt="logo" />
@@ -44,7 +51,7 @@ export function TeamBoard() {
         </Col>
         <Col xs={3}>
           <ListGroup variant="flush">
-            {teams.map((team, index) => (
+            {activeSport.map((team, index) => (
               <ListGroup.Item key={team.id}>
                 <div className={styles.teamContainer}>
                   <Form>
@@ -53,11 +60,6 @@ export function TeamBoard() {
                       <Form.Control
                         type="text"
                         placeholder={team.owner ? team.owner : index}
-                        // onChange={(e) =>
-                        //   dispatch(
-                        //     addOwner({ id: team.id, owner: e.target.value })
-                        //   )
-                        // }
                       />
                     </Form.Group>
                   </Form>
@@ -69,33 +71,41 @@ export function TeamBoard() {
         <Col xs={4}>
           <ButtonGroup>
             <Button
+              key={"shuffle"}
               variant="outline-success"
               size="md"
               onClick={() => {
-                dispatch(shuffle());
+                if (sport === "f1") {
+                  dispatch(shuffle());
+                }
+                if (sport === "nfl") {
+                  dispatch(shuffleNfl());
+                }
                 setCount(count + 1);
               }}
             >
               {count > 0 ? `Randomized ${count}X` : "Randomize"}
             </Button>
-            {/* {sports.map((sport) => (
+            {sports.map((sport, index) => (
               <Button
                 key={sport.value}
                 variant="outline-primary"
                 active={sport.isActive}
                 value={sport.value}
-                onClick={(e) => setSport(e.target.value)}
+                onClick={(e) => {
+                  setSport(e.target.value);
+                }}
               >
                 {sport.name}
               </Button>
-            ))} */}
+            ))}
           </ButtonGroup>
         </Col>
         <Col xs={2}>
           <Row>
             <Col>
               <Dice
-                onRoll={(value) => console.log(value)}
+                // onRoll={(value) => console.log(value)}
                 rollingTime={250}
                 size={150}
               />

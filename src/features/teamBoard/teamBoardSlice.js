@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { f1_teams } from "./data";
+import { f1_teams, nfl_teams } from "./data";
 
 const initialState = {
   f1_teams,
+  nfl_teams
 };
 
 export const teamBoard = createSlice({
@@ -33,12 +34,32 @@ export const teamBoard = createSlice({
           f1_teams[currentIndex],
         ];
       }
+    },
+    shuffleNfl: (state) => {
+      const { nfl_teams } = state;
+      let currentIndex = nfl_teams.length,
+        randomIndex;
+
+      // While there remain elements to shuffle.
+      while (currentIndex !== 0) {
+    
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [nfl_teams[currentIndex], nfl_teams[randomIndex]] = [
+          nfl_teams[randomIndex],
+          nfl_teams[currentIndex],
+        ];
+      }
     }
   },
 });
 
-export const { addOwner, shuffle } = teamBoard.actions;
+export const { addOwner, shuffle, shuffleNfl } = teamBoard.actions;
 
-export const activeTeams = (state) => state.teams.f1_teams;
+export const activeF1Teams = (state) => state.teams.f1_teams;
+export const activeNflTeams = (state) => state.teams.nfl_teams;
 
 export default teamBoard.reducer;
