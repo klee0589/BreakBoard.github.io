@@ -1,49 +1,20 @@
-import React from 'react';
+import React from 'react'
+import { Wheel } from 'react-custom-roulette'
 
-import './index.css';
+const data = [
+  { option: '0', style: { backgroundColor: 'green', textColor: 'black' } },
+  { option: '1', style: { backgroundColor: 'white' } },
+  { option: '2' },
+]
 
-export default class Wheel extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedItem: null,
-    };
-    this.selectItem = this.selectItem.bind(this);
-  }
-
-  selectItem() {
-    if (this.state.selectedItem === null) {
-      const selectedItem = Math.floor(Math.random() * this.props.items.length);
-      if (this.props.onSelectItem) {
-        this.props.onSelectItem(selectedItem);
-      }
-      this.setState({ selectedItem });
-    } else {
-      this.setState({ selectedItem: null });
-      setTimeout(this.selectItem, 500);
-    }
-  }
-
-  render() {
-    const { selectedItem } = this.state;
-    const { items } = this.props;
-
-    const wheelVars = {
-      '--nb-item': items.length,
-      '--selected-item': selectedItem,
-    };
-    const spinning = selectedItem !== null ? 'spinning' : '';
-
-    return (
-      <div className="wheel-container">
-        <div className={`wheel ${spinning}`} style={wheelVars} onClick={this.selectItem}>
-          {items.map((item, index) => (
-            <div className="wheel-item" key={index} style={{ '--item-nb': index }}>
-              {item}
-            </div>
-          ))}
-        </div>
-      </div>
-    );
-  }
-}
+export default () => (
+  <>
+    <Wheel
+      mustStartSpinning={false}
+      prizeNumber={3}
+      data={data}
+      backgroundColors={['#3e3e3e', '#df3428']}
+      textColors={['#ffffff']}
+    />
+  </>
+)

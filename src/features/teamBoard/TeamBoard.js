@@ -16,12 +16,30 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import { f1_teams, nfl_teams } from "./data";
 import Dice from "react-dice-roll";
+// import Wheel from "../wheel";
+
+import { Wheel } from "react-custom-roulette";
 
 export function TeamBoard() {
   const sports = [
     { name: "F1", value: "f1", isActive: false },
     { name: "NFL", value: "nfl", isActive: false },
   ];
+
+  const data = [
+    { option: "0", style: { backgroundColor: "green", textColor: "black" } },
+    { option: "1", style: { backgroundColor: "white" } },
+    { option: "2" },
+  ];
+
+  const [mustSpin, setMustSpin] = useState(false);
+  const [prizeNumber, setPrizeNumber] = useState(0);
+
+  const handleSpinClick = () => {
+    const newPrizeNumber = Math.floor(Math.random() * data.length);
+    setPrizeNumber(newPrizeNumber);
+    setMustSpin(true);
+  };
 
   const f1TeamsSelector = useSelector(activeF1Teams);
   const nflTeamsSelector = useSelector(activeNflTeams);
@@ -109,6 +127,17 @@ export function TeamBoard() {
                 rollingTime={250}
                 size={150}
               />
+            </Col>
+            <Col>
+              <Wheel
+                mustStartSpinning={mustSpin}
+                prizeNumber={prizeNumber}
+                data={data}
+                onStopSpinning={() => {
+                  setMustSpin(false);
+                }}
+              />
+              <button onClick={handleSpinClick}>SPIN</button>
             </Col>
           </Row>
         </Col>
