@@ -104,6 +104,16 @@ export function TeamBoard() {
             >
               {count > 0 ? `Randomized ${count}X` : "Randomize"}
             </Button>
+            <Button
+              key={"clear"}
+              variant="outline-warning"
+              size="md"
+              onClick={() => {
+                setCount(0);
+              }}
+            >
+              reset
+            </Button>
             {sports.map((sport, index) => (
               <Button
                 key={sport.value}
@@ -135,7 +145,7 @@ export function TeamBoard() {
                 size={150}
               />
             </Col>
-            <Col>
+            {/* <Col>
               <Wheel
                 mustStartSpinning={mustSpin}
                 prizeNumber={prizeNumber}
@@ -145,7 +155,7 @@ export function TeamBoard() {
                 }}
               />
               <button onClick={handleSpinClick}>SPIN</button>
-            </Col>
+            </Col> */}
           </Row>
         </Col>
       </Row>
