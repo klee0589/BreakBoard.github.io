@@ -129,10 +129,17 @@ export function TeamBoard() {
               />
             </Col>
             <Col>
+              <Dice
+                // onRoll={(value) => console.log(value)}
+                rollingTime={250}
+                size={150}
+              />
+            </Col>
+            <Col>
               <Wheel
                 mustStartSpinning={mustSpin}
                 prizeNumber={prizeNumber}
-                data={data}
+                data={activeSportTeam}
                 onStopSpinning={() => {
                   setMustSpin(false);
                 }}
