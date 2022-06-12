@@ -77,7 +77,7 @@ export function TeamBoard() {
                     <Form.Group className="mb-6" controlId="formBasicEmail">
                       <Form.Control
                         type="text"
-                        placeholder={team.owner ? team.owner : index}
+                        placeholder={team.owner ? team.owner : index + 1}
                       />
                     </Form.Group>
                   </Form>

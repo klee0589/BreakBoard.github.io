@@ -1,7 +1,32 @@
 ### This is for the github page for break board https://klee0589.github.io/BreakBoard/
 
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+
+### IN PROGRESS
+
+Sports:
+    - Soccer
+        - UEFA Champions League
+        - EPL
+        - La Liga
+        - Serie A
+    - Basketball
+        - NBA
+        - Collegiate
+
+    - Basketball
+    - Hockey
+    - Football
+        - NFL
+        - Collegiate
+
+Spin Wheel
+    - Add/remove teams
+    - Randomize list/spin Wheel
+
+Sending breaking participants a screenshot of their teams or access to the site for them to see their teams
+
+
 
 ## Available Scripts
 
