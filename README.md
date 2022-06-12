@@ -6,21 +6,19 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Sports:
     - Soccer
-        - UEFA Champions League
-        - EPL
-        - La Liga
-        - Serie A
+      - UEFA Champions League
+      - EPL
+      - La Liga
+      - Serie A
     - Basketball
-        - NBA
-        - Collegiate
-
-    - Basketball
+      - NBA
+      - Collegiate
     - Hockey
     - Football
-        - NFL
-        - Collegiate
+      - NFL
+      - Collegiate
 
-Spin Wheel
+Spin Wheel:
     - Add/remove teams
     - Randomize list/spin Wheel
 
