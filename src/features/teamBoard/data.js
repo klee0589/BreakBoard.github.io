@@ -411,3 +411,5 @@ export const nfl_teams = [
     logo: "https://static.www.nfl.com/image/private/f_auto/league/xymxwrxtyj9fhaemhdyd"
   },
 ];
+
+export const epl_teams = []
